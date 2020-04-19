@@ -44,7 +44,7 @@ if (command === 'add') {
 
 } else if (command === 'list') {
    var allNotes = notes.getAll();
-   if (allNotes) {
+   if (allNotes.length > 0) {
       console.log('There are ' + allNotes.length + ' note(s)');
       allNotes.forEach((note, i) => {
          console.log('------------------------')
@@ -54,6 +54,8 @@ if (command === 'add') {
          console.log('Body: ' + note.body)
          
       })
+   } else {
+      console.log('Note is empty')
    }
 } else if (command === 'read') {
    var note = notes.getNoteTitle(argv.title);
