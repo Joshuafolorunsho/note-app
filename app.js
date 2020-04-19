@@ -4,7 +4,40 @@ const yargs = require('yargs');
 
 const notes = require('./notes');
 
-const argv = yargs.argv;
+const titleOption = () => {
+   return {
+      describe: 'Title of the note',
+      demand: true,
+      alias: 't'
+   }
+}
+
+const argv = yargs
+   .command('add', 'Add a new note', {
+      title: titleOption(),
+      body: {
+         describe: 'Body of the note',
+         demand: true,
+         alias: 'b'
+      },
+   })
+   .command('read', 'Read a new note', {
+      title: {
+         describe: 'Title of the note you want to read',
+         demand: true,
+         alias: 't'
+      }
+   })
+   .command('list', 'Get all the available notes')
+   .command('remove', 'Remove a new note', {
+      title: {
+         describe: 'Title of the note you want to remove',
+         demand: true,
+         alias: 't'
+      }
+   })
+   .help()
+   .argv;
 var command = argv._[0];
 
 
@@ -40,7 +73,12 @@ if (command === 'add') {
       console.log('note was not found!')
    }
 } else if (command === 'remove') {
-   notes.removeNote(argv.title);
+   var note = notes.removeNote(argv.title);
+   if (note){
+      console.log('Note removed!')
+   } else {
+      console.log('Sorry, note doesn\'t exist')
+   }
 } else{
    console.log('Command not recognized')
 }
