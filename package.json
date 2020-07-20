@@ -9,7 +9,7 @@
   "author": "Joshua",
   "license": "ISC",
   "dependencies": {
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "yargs": "^4.7.1"
   }
 }
